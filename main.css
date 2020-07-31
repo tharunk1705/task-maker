@@ -3,6 +3,7 @@
 }
 .heading{
     display: grid;
+    margin-top:30px ;
     place-items: center;
 }
 .input{
@@ -10,5 +11,8 @@
     place-items: center;
 }
 .completedClass{
-    display: none;
+    visibility: hidden;
+}
+.listDiv{
+    margin-top: 20px;
 }

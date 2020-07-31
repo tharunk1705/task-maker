@@ -55,7 +55,7 @@
                 <br>
                 <button class="btn btn-primary" type="button" id="btnAddTask">Add Task</button>
             </div>
-            <div>
+            <div class="listDiv">
                 <ul class="list-group" id="taskList"></ul>
             </div>
         </div>
@@ -70,17 +70,17 @@
         event.addEventListener("click",addTask,false);
     //initialization
         let taskArray = [];
-        // let taskNo = 0;
+        let idNo = 0;
 
     //main FUnction
 
         function  addTask() {
             const taskObj = {};
             const textTask = taskInputEl.value;
-
+            taskObj.idNum = idNo;
             taskObj.taskName = textTask;
             taskObj.moment = new Date();
-            // taskNo++;
+            idNo++;
             console.log(taskObj);
             console.log(taskArray);
             taskArray.push(taskObj);
@@ -107,20 +107,20 @@
         taskArray = arrOfList;
     }
     //Create List
-    function createListItems({taskName,moment}){
+    function createListItems({idNum,taskName,moment}){
         return`
-                <li class="list-group-item d-flex justify-content-between">
+                <li class="list-group-item d-flex justify-content-between" >
                             <div class="d-flex flex-column">
                                 ${taskName}
                                 <small class="text-muted">${getDateString(moment)}</small>
                             </div>
-                            <div><span class="badge badge-success completedClass">Completed</span></div>
+                            <div id="spanDiv"><span class="badge badge-success completedClass" id="${"id"+idNum}">Completed</span></div>
                             <div>
                                 <button
                                     type="button"
                                     class="btn btn-outline-success btn-sm"
                                     id="completedBtn"
-                                    onclick="completedTask(${moment.valueOf()})"
+                                    onclick="completedTask(${idNum.valueOf()})"
                                     >
                                     <i class="fas fa-check"></i>
                                 </button>
@@ -144,8 +144,14 @@
     }
 
     //complete task
-        function completedTask(dateValue) {
-            document.getElementById("completedBtn").style.visibility ="hidden";
+        function completedTask(idValue) {
+            idValue="id"+idValue;
+            idValue = idValue +"";
+            // console.log(idValue);
+            document.getElementById(idValue).style.visibility="visible";
+            // const maindiv = document.getElementById("spanDiv");
+            // const x= maindiv.children[0];
+            // x.classList.remove("completedClass");
         }
     </script>
 
