@@ -58,6 +58,13 @@
             <div class="listDiv">
                 <ul class="list-group" id="taskList"></ul>
             </div>
+            <div class="linkGit">
+                <p>Find the Source code in
+                    <a href="https://github.com/tharunk1705/task-maker.git" target="_blank"><i class="fab fa-github"></i> github.com/tharunk1705</a>
+
+                </p>
+                <a href="https://tharun-kumar.netlify.app/" target="_blank">Know More About me</a>
+            </div>
         </div>
     </div>
 <!--JavaScript-->
@@ -103,15 +110,16 @@
 
     //Render List
     function renderList(arrOfList){
+
         const allTaskHTML = arrOfList.map(task=>createListItems(task));
         const joinedAllTaskHTML = allTaskHTML.join("");
         taskListTableEl.innerHTML =joinedAllTaskHTML;
         taskArray = arrOfList;
     }
     //Create List
-    function createListItems({idNum,setVal,taskName,moment}){
+    function createListItems({idNum,taskName,moment}){
         return`
-                <li class="list-group-item d-flex justify-content-between" >
+                <li class="list-group-item d-flex justify-content-between bg-light" >
                             <div class="d-flex flex-column">
                                 ${taskName}
                                 <small class="text-muted">${getDateString(moment)}</small>
@@ -122,7 +130,7 @@
                                     type="button"
                                     class="btn btn-outline-success btn-sm"
                                     id="completedBtn"
-                                    onclick="completedTask(${idNum.valueOf()},${setVal+1})"
+                                    onclick="completedTask(${idNum.valueOf()})"
                                     >
                                     <i class="fas fa-check"></i>
                                 </button>
@@ -146,12 +154,10 @@
     }
 
     //complete task
-        function completedTask(idValue,setVal) {
-            if (setVal == 1){
-                idValue="id"+idValue;
-                idValue = idValue +"";
-                document.getElementById(idValue).style.visibility="visible";
-            }
+        function completedTask(idValue) {
+            idValue="id"+idValue;
+            idValue = idValue +"";
+            document.getElementById(idValue).style.visibility="visible";
         }
     </script>
 

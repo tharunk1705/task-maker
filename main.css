@@ -16,3 +16,11 @@
 .listDiv{
     margin-top: 20px;
 }
+.linkGit{
+    font-family: Consolas;
+    position: relative;
+    color: #393e46;
+    top: 50px;
+    text-align: center;
+    font-size: 2vw;
+}
