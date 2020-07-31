@@ -71,6 +71,7 @@
     //initialization
         let taskArray = [];
         let idNo = 0;
+        let setValue =0;
 
     //main FUnction
 
@@ -78,11 +79,12 @@
             const taskObj = {};
             const textTask = taskInputEl.value;
             taskObj.idNum = idNo;
+            taskObj.setVal = setValue;
             taskObj.taskName = textTask;
             taskObj.moment = new Date();
             idNo++;
-            console.log(taskObj);
-            console.log(taskArray);
+            // console.log(taskObj);
+            // console.log(taskArray);
             taskArray.push(taskObj);
 
             renderList(taskArray);
@@ -107,7 +109,7 @@
         taskArray = arrOfList;
     }
     //Create List
-    function createListItems({idNum,taskName,moment}){
+    function createListItems({idNum,setVal,taskName,moment}){
         return`
                 <li class="list-group-item d-flex justify-content-between" >
                             <div class="d-flex flex-column">
@@ -120,7 +122,7 @@
                                     type="button"
                                     class="btn btn-outline-success btn-sm"
                                     id="completedBtn"
-                                    onclick="completedTask(${idNum.valueOf()})"
+                                    onclick="completedTask(${idNum.valueOf()},${setVal+1})"
                                     >
                                     <i class="fas fa-check"></i>
                                 </button>
@@ -140,18 +142,16 @@
     function deleteItem(dateValue){
         const newArr = taskArray.filter(task=> task.moment.valueOf() !== dateValue);
         renderList(newArr);
-        console.log(newArr);
+        // console.log(newArr);
     }
 
     //complete task
-        function completedTask(idValue) {
-            idValue="id"+idValue;
-            idValue = idValue +"";
-            // console.log(idValue);
-            document.getElementById(idValue).style.visibility="visible";
-            // const maindiv = document.getElementById("spanDiv");
-            // const x= maindiv.children[0];
-            // x.classList.remove("completedClass");
+        function completedTask(idValue,setVal) {
+            if (setVal == 1){
+                idValue="id"+idValue;
+                idValue = idValue +"";
+                document.getElementById(idValue).style.visibility="visible";
+            }
         }
     </script>
 
