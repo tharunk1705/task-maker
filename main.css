@@ -1,0 +1,14 @@
+.myNav{
+    background-color: #000839;
+}
+.heading{
+    display: grid;
+    place-items: center;
+}
+.input{
+    display: grid;
+    place-items: center;
+}
+.completedClass{
+    display: none;
+}
